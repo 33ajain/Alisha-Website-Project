@@ -1,0 +1,134 @@
+/* || General setup */
+
+html {
+  font-size: 10px;
+  background-color: rgb(193, 186, 186);
+}
+
+body {
+  width: 70%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* || typography */
+
+h1,
+h2 {
+  font-family: "Brush Script MT", cursive;
+  color: #000000;
+}
+
+p,
+li {
+  font-family: "Roboto Condensed", sans-serif;
+  color: #2a2a2a;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+h2 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+/* || header layout */
+
+header {
+  margin-bottom: 10px;
+}
+
+header,
+nav,
+article,
+aside,
+footer,
+section {
+  background-color: #25e625;
+  padding: 2%;
+}
+
+header img {
+  height: 60px;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav li {
+  text-align: center;
+  flex: 1;
+}
+
+nav a {
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+}
+
+nav a:hover,
+nav a:focus {
+  color: red;
+}
+
+/* || main layout */
+
+main {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  text-align: center;
+}
+
+article {
+  flex: 3;
+}
+
+aside {
+  flex: 1;
+}
+
+/* Photo grid */
+
+.photo-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.photo-box a {
+  display: block;
+}
+
+.photo-box img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  display: block;
+}
+
+footer {
+  margin-top: 20px;
+}

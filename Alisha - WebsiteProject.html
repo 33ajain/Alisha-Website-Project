@@ -1,0 +1,95 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>Book Recommendations</title> 
+    <style> 
+        body { 
+            background-color: lightcyan; 
+            border: 8px solid #d29be4; 
+            min-height: 100vh; 
+            margin: 0; 
+            box-sizing: border-box; 
+            padding: 20px; 
+            display: flex;
+            flex-direction: column;
+            font-family: sans-serif;
+            align-items: center; 
+        } 
+        .main-content {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+        }
+        /* Styles to keep the text centered and organized */
+        ul {
+            list-style-position: inside;
+            padding-left: 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        li {
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+    </style> 
+</head> 
+<body> 
+
+    <div class="main-content">
+        <!-- Centered Heading --> 
+        <h1 style="text-align: center; font-size: 54px; font-weight: 900; font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; letter-spacing: -1px; margin-top: 10px; margin-bottom: 30px; background: linear-gradient(to right, #8a2387, #e94057, #f27121); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;">Book Recommendations</h1> 
+        
+        <!-- Catchy introduction hook -->
+        <p style="font-family: Verdana, sans-serif; font-size: 20px; text-align: center; margin-bottom: 40px;">
+            Bored of your bookshelf? Let’s find your next big adventure!
+        </p> 
+
+        <!-- ADVENTURE SECTION WITH EMOJI -->
+        <h2 style="text-align: center;">🎒 <b><u>Adventure</u></b> 🎒</h2>
+        <ul>
+            <li><strong>Wildborn</strong> (Spirit Animals) by Brandon Mull</li>
+            <li><strong>The Explorer</strong> by Katherine Rundell</li>
+            <li><strong>Hatchet</strong> by Gary Paulsen</li>
+        </ul>
+
+        <!-- SCIENCE FICTION SECTION WITH EMOJI -->
+        <h2 style="text-align: center;">🚀 <b><u>Science Fiction</u></b> 🚀</h2>
+        <ul>
+            <li><strong>The Wild Robot</strong> by Peter Brown</li>
+            <li><strong>A Wrinkle in Time</strong> by Madeleine L'Engle</li>
+            <li><strong>The Last Last-Day-of-Summer</strong> by Lamar Giles</li>
+        </ul>
+
+        <!-- HISTORY SECTION WITH EMOJI -->
+        <h2 style="text-align: center;">📜 <b><u>History</u></b> 📜</h2>
+        <ul>
+            <li><strong>I Survived the Sinking of the Titanic, 1912</strong> by Lauren Tarshis</li>
+            <li><strong>Refugee</strong> by Alan Gratz</li>
+            <li><strong>Number the Stars</strong> by Lois Lowry</li>
+        </ul>
+    </div>
+
+    <!-- BOTTOM CONTENT SECTION -->
+    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 40px; padding-bottom: 10px; width: 100%;">
+        
+        <!-- Centered Link to the second page -->
+        <a href="about.html" style="font-size: 20px; color: blue; text-decoration: underline; margin-bottom: 30px; text-align: center;">
+            Click here for Fantasy, Romance, and Mystery books!
+        </a> 
+
+        <!-- Star Rating Section --> 
+        <div style="display: flex; gap: 6px; margin-bottom: 12px;"> 
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="#f1c40f"> <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/> </svg> 
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="#f1c40f"> <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/> </svg> 
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="#f1c40f"> <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/> </svg> 
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="#f1c40f"> <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/> </svg> 
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="#f1c40f"> <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/> </svg> 
+        </div> 
+        <span style="font-size: 18px; color: #000000; font-weight: 500;">Leave us a rating</span> 
+    </div> 
+
+</body> 
+</html>
