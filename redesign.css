@@ -1,0 +1,57 @@
+/* redesign.css — unique look & motion system */
+:root{
+  --bg:#0f172a;
+  --card:#0b1220;
+  --muted:#9aa7b2;
+  --accent1:#ff6b6b;
+  --accent2:#ffd166;
+  --glass: rgba(255,255,255,0.04);
+  --radius:16px;
+  --max:1100px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#071029);color:#e6eef6}
+.page-wrap{max-width:var(--max);margin:0 auto}
+.brand{display:flex;align-items:center;justify-content:space-between;padding:20px}
+.brand-logo{font-weight:800;font-size:1.1rem;color:var(--accent2);text-decoration:none}
+.icon-btn{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px;border-radius:8px}
+.hero-unique{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:20px}
+.hero-inner h1{font-size:2.2rem;margin:0 0 8px}
+.lead{color:var(--muted);max-width:46ch}
+.hero-actions{margin-top:14px;display:flex;gap:12px}
+.cta{background:linear-gradient(90deg,var(--accent1),#ff9472);border:0;padding:12px 18px;border-radius:12px;color:#081421;font-weight:700}
+.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;color:var(--muted)}
+.story-map-svg{width:100%;height:220px;border-radius:14px;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.6))}
+
+.quiz-shell{padding:20px}
+.quiz-stage{display:flex;gap:18px}
+.quiz-left{width:420px}
+.progress-ring{width:84px;height:84px;margin-bottom:12px}
+.ring-bg{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:6}
+.ring-fg{fill:none;stroke:var(--accent2);stroke-width:6;stroke-dasharray:94;stroke-dashoffset:94;transition:stroke-dashoffset 420ms cubic-bezier(.2,.9,.2,1)}
+.map-area{min-height:220px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,0.03)}
+
+.quiz-panel{flex:1;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.choice{background:var(--glass);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+.choice:hover{transform:translateY(-6px);box-shadow:0 18px 38px rgba(0,0,0,0.5)}
+.choice.selected{outline:3px solid rgba(255,215,102,0.12);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+.controls{display:flex;justify-content:space-between;margin-top:16px}
+.btn{background:var(--accent2);border:0;padding:10px 14px;border-radius:10px;color:#061419;font-weight:700}
+.btn.small{padding:8px 12px}
+
+.result-shell{padding:20px}
+.result-card{padding:18px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+.result-main{display:flex;gap:18px}
+.pick{flex:2}
+.recommend-list{flex:1}
+.recommend-list ul{list-style:none;padding:0;margin:0}
+.recommend-list li{padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)}
+
+.site-foot{padding:18px;text-align:center;color:var(--muted)}
+.hidden{display:none}
+.fx-canvas{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none}
+
+@media (max-width:900px){.hero-unique{grid-template-columns:1fr;}.quiz-stage{flex-direction:column}.quiz-left{width:100%}.choices{grid-template-columns:1fr}}

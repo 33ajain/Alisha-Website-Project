@@ -3,67 +3,97 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Alisha Books — Find Your Genre</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Alisha Books — A New Quiz Experience</title>
+  <link rel="stylesheet" href="redesign.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap">
-      <h1 class="logo">Alisha Books</h1>
-      <nav class="nav">
-        <button id="start-quiz" class="btn">Take the Quiz</button>
+  <div class="page-wrap">
+    <header class="brand">
+      <a href="/" class="brand-logo">Alisha Books</a>
+      <nav class="brand-actions">
+        <button id="theme-toggle" class="icon-btn" aria-pressed="false">Theme</button>
+        <button id="save-list" class="icon-btn">Save</button>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <main class="wrap main">
-    <section class="hero">
-      <h2>Not sure what to read next?</h2>
-      <p>Take a short quiz to discover the book genres you’ll love and get recommendations — including "Alisha's pick" for each genre with a short review.</p>
-      <button id="hero-start" class="btn primary">Find My Genre</button>
-    </section>
-
-    <section id="quiz-section" class="quiz hidden" aria-hidden="true">
-      <div class="quiz-card">
-        <div class="quiz-header">
-          <div id="progress" class="progress"><div id="progress-bar" style="width:0%"></div></div>
-          <h3 id="question-title"></h3>
+    <main>
+      <section class="hero-unique">
+        <div class="hero-inner">
+          <h1>Which story will find you today?</h1>
+          <p class="lead">A short, adaptive quiz that arranges a living story-map of recommendations — built uniquely for you.</p>
+          <div class="hero-actions">
+            <button id="open-quiz" class="cta">Try the Unique Quiz</button>
+            <button id="demo" class="ghost">Preview</button>
+          </div>
         </div>
-
-        <ul id="options" class="options" role="list"></ul>
-
-        <div class="quiz-footer">
-          <button id="prev" class="btn">Back</button>
-          <button id="next" class="btn primary">Next</button>
+        <div class="hero-visual" aria-hidden="true">
+          <svg viewBox="0 0 600 360" class="story-map-svg">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#FDE68A"/><stop offset="1" stop-color="#FBCFE8"/></linearGradient>
+            </defs>
+            <rect x="20" y="20" width="160" height="80" rx="10" fill="url(#g1)"/>
+            <circle cx="420" cy="80" r="38" fill="#C7F9CC"/>
+            <rect x="260" y="200" width="220" height="100" rx="18" fill="#DFF8FF"/>
+          </svg>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="result-section" class="result hidden" aria-hidden="true">
-      <div class="result-card">
-        <h2>Your top genre: <span id="genre-name"></span></h2>
-        <p id="genre-desc"></p>
+      <section id="quiz-shell" class="quiz-shell hidden" aria-hidden="true">
+        <div class="quiz-stage">
+          <div class="quiz-left">
+            <div id="progress-ring" class="progress-ring" aria-hidden="true">
+              <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="15" class="ring-bg"/><circle cx="20" cy="20" r="15" class="ring-fg"/></svg>
+            </div>
+            <div id="map-area" class="map-area" aria-hidden="true"></div>
+          </div>
 
-        <h3>Alisha's pick</h3>
-        <div class="alisha-pick">
-          <h4 id="pick-title"></h4>
-          <p id="pick-review"></p>
+          <form id="quiz" class="quiz-panel" aria-live="polite">
+            <h2 id="q-title">Ready?</h2>
+            <p id="q-sub" class="muted">We adapt the next questions to your answers — nothing is fixed.</p>
+            <div id="choices" class="choices" role="list"></div>
+
+            <div class="controls">
+              <button type="button" id="back" class="btn small ghost">Back</button>
+              <button type="button" id="next" class="btn small">Next</button>
+            </div>
+          </form>
         </div>
+      </section>
 
-        <h3>Recommended books</h3>
-        <ul id="book-list" class="book-list"></ul>
-        <div class="result-actions">
-          <button id="retake" class="btn">Retake Quiz</button>
-          <button id="explore" class="btn primary">Explore More</button>
+      <section id="result-shell" class="result-shell hidden" aria-hidden="true">
+        <div class="result-card">
+          <div class="reveal">
+            <h2 id="result-title">Your Story Map</h2>
+            <p id="result-sub" class="muted">A unique recommendation based on how you answered.</p>
+          </div>
+
+          <div class="result-main">
+            <div class="pick">
+              <h3 id="pick-genre">Genre</h3>
+              <h4 id="pick-title">Title</h4>
+              <p id="pick-review">Short review goes here.</p>
+              <div class="result-actions">
+                <button id="share" class="btn">Share</button>
+                <button id="confetti" class="btn ghost">Celebrate</button>
+              </div>
+            </div>
+
+            <aside class="recommend-list">
+              <h4>More like this</h4>
+              <ul id="rec-list"></ul>
+            </aside>
+          </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="site-footer">
-    <div class="wrap">© Alisha Books</div>
-  </footer>
+    </main>
 
-  <script src="script.js"></script>
+    <footer class="site-foot">
+      <div class="wrap">Designed with care • Alisha Books</div>
+    </footer>
+  </div>
+
+  <canvas id="fx-canvas" class="fx-canvas" aria-hidden="true"></canvas>
+  <script src="redesign.js"></script>
 </body>
 </html>
