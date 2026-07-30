@@ -1,0 +1,50 @@
+:root{
+  --bg:#f9fbfd; --card:#ffffff; --muted:#6b7280;
+  --accent:#0ea5a4; --accent-600:#08918f;
+  --radius:12px; --max-width:900px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color-scheme: light;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:#0f172a}
+.wrap{max-width:var(--max-width);margin:0 auto;padding:1rem}
+
+.site-header{background:linear-gradient(90deg,#fff 0%, #f6fbfb 100%);border-bottom:1px solid #edf2f7}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;padding:1rem 1rem}
+.logo{margin:0;font-size:1.25rem;color:#0f172a}
+.nav .btn{border-radius:8px;padding:0.5rem 0.9rem;border:1px solid #e6eef0;background:#fff}
+
+.hero{display:grid;gap:1rem;padding:3rem 1rem;border-radius:12px;background:linear-gradient(180deg,#ffffff,#f8ffff);box-shadow:0 6px 20px rgba(2,6,23,0.05);margin:1.5rem 0;text-align:center}
+.hero h2{margin:0;font-size:1.8rem}
+.hero p{color:var(--muted);margin:0.5rem 0 1rem}
+
+.btn{cursor:pointer;border:0;padding:0.6rem 1rem;border-radius:10px;background:#e6f6f6;color:var(--accent-600)}
+.btn.primary{background:var(--accent);color:white;box-shadow:0 6px 14px rgba(14,165,164,0.12)}
+
+.quiz, .result{display:flex;justify-content:center;padding:2rem 1rem}
+.hidden{display:none}
+
+.quiz-card, .result-card{width:100%;max-width:640px;background:var(--card);padding:1.25rem;border-radius:var(--radius);box-shadow:0 8px 30px rgba(2,6,23,0.06)}
+.quiz-header h3{margin:0 0 0.75rem}
+.options{list-style:none;padding:0;margin:0;display:grid;gap:0.6rem}
+.options li{background:#f8fbfb;padding:0.8rem;border-radius:10px;cursor:pointer;border:1px solid #eef7f7}
+.options li.selected{background:linear-gradient(90deg,#e6fffd,#dffbf9);border-color:var(--accent)}
+.options li:focus{outline:2px solid rgba(14,165,164,0.18)}
+.quiz-footer{display:flex;justify-content:space-between;margin-top:1rem}
+
+.progress{height:8px;background:#eef7f7;border-radius:999px;overflow:hidden}
+#progress-bar{height:100%;background:linear-gradient(90deg,var(--accent-600),var(--accent));transition:width 300ms}
+
+.book-list{list-style:none;padding:0;margin:0}
+.book-list li{padding:0.6rem 0;border-bottom:1px dashed #eef2f2}
+.result-actions{margin-top:1rem;display:flex;gap:0.5rem;justify-content:flex-end}
+
+.alisha-pick{background:linear-gradient(90deg,#fffef6,#f6fffb);padding:0.8rem;border-radius:10px;border:1px solid #f0ead6;margin-bottom:1rem}
+.alisha-pick h4{margin:0 0 0.5rem}
+.alisha-pick p{margin:0;color:var(--muted)}
+
+@media (max-width:600px){
+  .hero{padding:2rem}
+  .site-header .wrap{padding:0.5rem}
+}
