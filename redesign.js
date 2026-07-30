@@ -216,3 +216,29 @@
   decodeHash();
 
 })();
+
+/* Emoji wrapper: find emoji characters in text nodes and wrap them so they render in native color */
+function wrapEmojis(root=document.body){
+  const emojiRegex = /([\u231A-\u27BF\u1F300-\u1F6FF\u1F900-\u1F9FF\u2600-\u26FF\u2700-\u27BF\uFE0F])/g;
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+  const nodes = [];
+  while(walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(node => {
+    if(!node.nodeValue || !emojiRegex.test(node.nodeValue)) return;
+    const frag = document.createDocumentFragment();
+    const parts = node.nodeValue.split(emojiRegex);
+    parts.forEach(part => {
+      if(emojiRegex.test(part)){
+        const span = document.createElement('span');
+        span.className = 'plain-emoji';
+        span.textContent = part;
+        frag.appendChild(span);
+      } else {
+        frag.appendChild(document.createTextNode(part));
+      }
+    });
+    node.parentNode.replaceChild(frag, node);
+  });
+}
+
+if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ()=>wrapEmojis()); else wrapEmojis();
