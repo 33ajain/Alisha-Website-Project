@@ -1,590 +1,69 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <title>Book Recommendations Hub</title> 
-    <style> 
-        body { 
-            background-color: lightcyan; 
-            border: 8px solid #d29be4; 
-            min-height: 100vh; 
-            margin: 0; 
-            box-sizing: border-box; 
-            padding: 0; 
-            display: flex;
-            flex-direction: column;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            align-items: center; 
-        } 
-        .site-header {
-            width: 100%;
-            background-color: white;
-            border-bottom: 2px solid #d29be4;
-            padding: 10px 20px;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo-container {
-            font-size: 18px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .logo-text {
-            background: linear-gradient(to right, #1A237E, #7B1FA2, #E91E63);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-        }
-        .nav-links a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 600;
-            margin-left: 15px;
-            font-size: 14px;
-        }
-        .main-content {
-            flex: 1;
-            width: 100%;
-            max-width: 900px; /* FIXED: Restricted width so cards don't look giant */
-            display: flex;
-            flex-direction: column;
-            align-items: center; 
-            padding: 25px 15px;
-            box-sizing: border-box;
-        }
-        /* FIXED: Shrunk hero sizes so writing isn't too big */
-        .hero-title {
-            text-align: center; 
-            font-size: 36px; 
-            font-weight: 900; 
-            margin: 0 0 10px 0; 
-            background: linear-gradient(to right, #1A237E, #7B1FA2, #E91E63); 
-            -webkit-background-clip: text; 
-            background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            color: transparent;
-        }
-        .hero-subtitle {
-            font-family: Verdana, sans-serif; 
-            font-size: 15px; 
-            text-align: center; 
-            margin-bottom: 30px; 
-            color: #444;
-            max-width: 550px;
-            line-height: 1.4;
-        } 
-        .genre-container {
-            width: 100%;
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            box-sizing: border-box;
-            border: 1px solid rgba(210, 155, 228, 0.3);
-            text-align: center;
-        }
-        .genre-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #111;
-            margin-top: 0;
-            margin-bottom: 15px;
-            display: inline-block;
-            border-bottom: 2px solid #d29be4;
-            padding-bottom: 2px;
-        }
-        .book-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* FIXED: Smaller minimum card sizing */
-            gap: 15px;
-            padding: 0;
-            margin: 0;
-        }
-        .book-card-link {
-            text-decoration: none;
-            display: block;
-        }
-        .book-card {
-            background-color: #f9f9f9;
-            border-radius: 6px;
-            padding: 15px;
-            border: 1px solid #eee;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 90px;
-            box-sizing: border-box;
-        }
-        .book-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-            background-color: #f1f1f1;
-        }
-        .book-title {
-            font-size: 14px;
-            color: #1A237E; 
-            font-weight: 700;
-            margin-bottom: 4px;
-            line-height: 1.2;
-            text-decoration: underline;
-        }
-        .book-author {
-            font-size: 12px;
-            color: #555;
-            font-style: italic;
-        }
-        .footer-section {
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            background: white;
-            width: 100%;
-            border-top: 1px solid #d29be4;
-            padding: 20px; 
-            box-sizing: border-box;
-        }
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(to right, #7B1FA2, #E91E63);
-            color: white !important;
-            text-decoration: none;
-            padding: 10px 24px;
-            font-size: 14px;
-            font-weight: 700;
-            border-radius: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 3px 8px rgba(123, 31, 162, 0.2);
-        }
-
-        /* --- Tiny AI chat widget styles --- */
-        #ai-button {
-            position: fixed;
-            right: 18px;
-            bottom: 18px;
-            background: linear-gradient(135deg,#7B1FA2,#E91E63);
-            color: white;
-            border: none;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            box-shadow: 0 6px 18px rgba(123,31,162,0.25);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            z-index: 9999;
-        }
-        #ai-chat {
-            position: fixed;
-            right: 18px;
-            bottom: 86px;
-            width: 320px;
-            max-height: 420px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-            overflow: hidden;
-            display: none;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-        }
-        #ai-chat .header {
-            background: linear-gradient(90deg,#1A237E,#7B1FA2);
-            color: white;
-            padding: 10px 12px;
-            font-weight: 700;
-        }
-        #ai-chat .messages {
-            padding: 10px;
-            flex: 1;
-            overflow-y: auto;
-            background: #fafafa;
-        }
-        .msg { margin: 8px 0; display: block; }
-        .msg.ai { text-align: left; }
-        .msg.user { text-align: right; }
-        .msg .bubble { display: inline-block; padding: 8px 10px; border-radius: 8px; max-width: 86%; }
-        .msg.ai .bubble { background: #fff; border: 1px solid #eee; color: #222; }
-        .msg.user .bubble { background: linear-gradient(90deg,#7B1FA2,#E91E63); color: white; }
-        #ai-chat .input-row { display:flex; padding: 8px; gap:8px; border-top: 1px solid #eee; }
-        #ai-chat input[type="text"] { flex:1; padding:8px 10px; border-radius:8px; border:1px solid #ddd; }
-        #ai-chat button.send { background:#1A237E; color:white; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; }
-        #ai-chat .small { font-size:12px; color:#666; margin-top:6px; }
-
-    </style> 
-</head> 
-<body> 
-
-    <header class="site-header">
-        <div class="logo-container">
-            <span>📚</span><span class="logo-text">Alisha's Reads</span>
-        </div>
-        <nav class="nav-links">
-            <a href="#">Home</a>
-            <a href="about.html">More Genres</a>
-        </nav>
-    </header>
-
-    <main class="main-content">
-        <h1 class="hero-title">Book Recommendations</h1> 
-        <p class="hero-subtitle">Bored of your bookshelf? Discover your next big reading milestone with our curated list of unforgettable adventures!</p> 
-
-        <!-- ADVENTURE CARD SECTION -->
-        <section class="genre-container">
-            <div class="genre-title">🎒 Adventure 🎒</div>
-            <div class="book-grid">
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Wildborn (Spirit Animals)</span>
-                        <span class="book-author">by Brandon Mull</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Explorer</span>
-                        <span class="book-author">by Katherine Rundell</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Hatchet</span>
-                        <span class="book-author">by Gary Paulsen</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Boxcar Children</span>
-                        <span class="book-author">by G. Chandler Warner</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Bletchley Riddle</span>
-                        <span class="book-author">by R. Sepetys & S. Sheinkin</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- SCIENCE FICTION CARD SECTION -->
-        <section class="genre-container">
-            <div class="genre-title">🚀 Science Fiction 🚀</div>
-            <div class="book-grid">
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Wild Robot</span>
-                        <span class="book-author">by Peter Brown</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">A Wrinkle in Time</span>
-                        <span class="book-author">by Madeleine L'Engle</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Last Last-Day-of-Summer</span>
-                        <span class="book-author">by Lamar Giles</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Giver</span>
-                        <span class="book-author">by Lois Lowry</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The First State of Being</span>
-                        <span class="book-author">by Erin Entrada Kelly</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- HISTORY SECTION -->
-        <section class="genre-container">
-            <div class="genre-title">📜 History 📜</div>
-            <div class="book-grid">
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Code Name: Verity</span>
-                        <span class="book-author">by Elizabeth Wein</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Wolf by Wolf</span>
-                        <span class="book-author">by Ava E. Reid</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Book Thief</span>
-                        <span class="book-author">by Markus Zusak</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Crispin: The Cross of Lead</span>
-                        <span class="book-author">by Avi</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Chains</span>
-                        <span class="book-author">by Laurie Halse Anderson</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- REALISTIC FICTION SECTION -->
-        <section class="genre-container">
-            <div class="genre-title">🌟 Realistic Fiction 🌟</div>
-            <div class="book-grid">
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Wonder</span>
-                        <span class="book-author">by R.J. Palacio</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Hate U Give</span>
-                        <span class="book-author">by Angie Thomas</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Fault in Our Stars</span>
-                        <span class="book-author">by John Green</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Refugee</span>
-                        <span class="book-author">by Alan Gratz</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Sky is Everywhere</span>
-                        <span class="book-author">by Jandy Nelson</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="footer-section">
-        <a href="about.html" class="cta-button">Explore More Genres →</a>
-        <p style="color: #666; font-size: 12px; margin: 0;">© 2024 Alisha's Reads | Curated Book Recommendations</p>
-    </footer>
-
-
-    <!-- --- Tiny AI widget HTML --- -->
-    <button id="ai-button" title="Ask the Book AI">🤖</button>
-    <div id="ai-chat" aria-live="polite">
-        <div class="header">Tiny Book AI</div>
-        <div class="messages" id="ai-messages">
-            <!-- messages injected here -->
-        </div>
-        <div class="input-row">
-            <input type="text" id="ai-input" placeholder="Type your answer... (press Enter)" />
-            <button class="send" id="ai-send">Send</button>
-        </div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alisha Books — Find Your Genre</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1 class="logo">Alisha Books</h1>
+      <nav class="nav">
+        <button id="start-quiz" class="btn">Take the Quiz</button>
+      </nav>
     </div>
+  </header>
 
-    <script>
-        (function(){
-            const genres = {
-                "Adventure": [
-                    {title: "Wildborn (Spirit Animals)", author: "Brandon Mull"},
-                    {title: "The Explorer", author: "Katherine Rundell"},
-                    {title: "Hatchet", author: "Gary Paulsen"},
-                    {title: "The Boxcar Children", author: "G. Chandler Warner"},
-                    {title: "The Bletchley Riddle", author: "R. Sepetys & S. Sheinkin"}
-                ],
-                "Science Fiction": [
-                    {title: "The Wild Robot", author: "Peter Brown"},
-                    {title: "A Wrinkle in Time", author: "Madeleine L'Engle"},
-                    {title: "The Last Last-Day-of-Summer", author: "Lamar Giles"},
-                    {title: "The Giver", author: "Lois Lowry"},
-                    {title: "The First State of Being", author: "Erin Entrada Kelly"}
-                ],
-                "History": [
-                    {title: "Code Name: Verity", author: "Elizabeth Wein"},
-                    {title: "Wolf by Wolf", author: "Ava E. Reid"},
-                    {title: "The Book Thief", author: "Markus Zusak"},
-                    {title: "Crispin: The Cross of Lead", author: "Avi"},
-                    {title: "Chains", author: "Laurie Halse Anderson"}
-                ],
-                "Realistic Fiction": [
-                    {title: "Wonder", author: "R.J. Palacio"},
-                    {title: "The Hate U Give", author: "Angie Thomas"},
-                    {title: "The Fault in Our Stars", author: "John Green"},
-                    {title: "Refugee", author: "Alan Gratz"},
-                    {title: "The Sky is Everywhere", author: "Jandy Nelson"}
-                ]
-            };
+  <main class="wrap main">
+    <section class="hero">
+      <h2>Not sure what to read next?</h2>
+      <p>Take a short quiz to discover the book genres you’ll love and get recommendations — including "Alisha's pick" for each genre with a short review.</p>
+      <button id="hero-start" class="btn primary">Find My Genre</button>
+    </section>
 
-            const aiButton = document.getElementById('ai-button');
-            const aiChat = document.getElementById('ai-chat');
-            const aiMessages = document.getElementById('ai-messages');
-            const aiInput = document.getElementById('ai-input');
-            const aiSend = document.getElementById('ai-send');
+    <section id="quiz-section" class="quiz hidden" aria-hidden="true">
+      <div class="quiz-card">
+        <div class="quiz-header">
+          <div id="progress" class="progress"><div id="progress-bar" style="width:0%"></div></div>
+          <h3 id="question-title"></h3>
+        </div>
 
-            let state = {
-                step: 0, // 0 = initial closed; when opened first prompt
-                userBooks: [],
-                guessedGenre: null
-            };
+        <ul id="options" class="options" role="list"></ul>
 
-            function appendMessage(text, from='ai'){
-                const wrap = document.createElement('div');
-                wrap.className = 'msg ' + (from==='ai'? 'ai' : 'user');
-                const bubble = document.createElement('span');
-                bubble.className = 'bubble';
-                bubble.textContent = text;
-                wrap.appendChild(bubble);
-                aiMessages.appendChild(wrap);
-                aiMessages.scrollTop = aiMessages.scrollHeight;
-            }
+        <div class="quiz-footer">
+          <button id="prev" class="btn">Back</button>
+          <button id="next" class="btn primary">Next</button>
+        </div>
+      </div>
+    </section>
 
-            function openChat(){
-                aiChat.style.display = 'flex';
-                aiButton.style.display = 'none';
-                if(state.step === 0){
-                    setTimeout(()=>{
-                        appendMessage('Hi! I can recommend books for you. First — what are 3 books you like? (Separate with commas)');
-                        state.step = 1;
-                    }, 250);
-                }
-                aiInput.focus();
-            }
-            function closeChat(){
-                aiChat.style.display = 'none';
-                aiButton.style.display = 'flex';
-            }
+    <section id="result-section" class="result hidden" aria-hidden="true">
+      <div class="result-card">
+        <h2>Your top genre: <span id="genre-name"></span></h2>
+        <p id="genre-desc"></p>
 
-            aiButton.addEventListener('click', openChat);
+        <h3>Alisha's pick</h3>
+        <div class="alisha-pick">
+          <h4 id="pick-title"></h4>
+          <p id="pick-review"></p>
+        </div>
 
-            aiSend.addEventListener('click', handleSend);
-            aiInput.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ handleSend(); } });
+        <h3>Recommended books</h3>
+        <ul id="book-list" class="book-list"></ul>
+        <div class="result-actions">
+          <button id="retake" class="btn">Retake Quiz</button>
+          <button id="explore" class="btn primary">Explore More</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
-            function handleSend(){
-                const text = aiInput.value.trim();
-                if(!text) return;
-                appendMessage(text, 'user');
-                aiInput.value = '';
+  <footer class="site-footer">
+    <div class="wrap">© Alisha Books</div>
+  </footer>
 
-                if(state.step === 1){
-                    // parse three books
-                    const parts = text.split(',').map(s=>s.trim()).filter(Boolean).slice(0,5);
-                    state.userBooks = parts;
-                    // try to guess genre by matching titles/authors present in our lists
-                    const scores = {};
-                    Object.keys(genres).forEach(g=> scores[g]=0);
-
-                    parts.forEach(p => {
-                        const low = p.toLowerCase();
-                        Object.entries(genres).forEach(([g,arr])=>{
-                            arr.forEach(b=>{
-                                if(b.title.toLowerCase().includes(low) || b.author.toLowerCase().includes(low) || low.includes(b.title.toLowerCase().split(' ')[0])){
-                                    scores[g] += 2;
-                                }
-                                // also match by genre keywords
-                            });
-                        });
-                    });
-
-                    // simple keyword matching across known genres
-                    const keywordMap = {
-                        'adventure': 'Adventure', 'explorer': 'Adventure', 'wild': 'Adventure', 'hatchet': 'Adventure',
-                        'robot':'Science Fiction', 'space':'Science Fiction', 'time':'Science Fiction', 'wrinkle':'Science Fiction',
-                        'history':'History', 'war':'History', 'book thief':'History',
-                        'realistic':'Realistic Fiction', 'wonder':'Realistic Fiction', 'hate':'Realistic Fiction'
-                    };
-                    parts.forEach(p=>{
-                        const low = p.toLowerCase();
-                        Object.entries(keywordMap).forEach(([k,g])=>{ if(low.includes(k)) scores[g] += 1; });
-                    });
-
-                    // pick highest score
-                    const best = Object.entries(scores).sort((a,b)=> b[1]-a[1]);
-                    if(best[0][1] > 0){
-                        state.guessedGenre = best[0][0];
-                        setTimeout(()=>{
-                            appendMessage(`Nice! Based on those, I think you like ${state.guessedGenre}. Here are three I recommend:`);
-                            recommendBooks(state.guessedGenre, state.userBooks);
-                            state.step = 99;
-                        }, 700);
-                    } else {
-                        setTimeout(()=>{
-                            appendMessage("Thanks — I couldn't be sure. Do you prefer Adventure, Science Fiction, History, or Realistic Fiction? (Type one)");
-                            state.step = 2;
-                        }, 700);
-                    }
-
-                } else if(state.step === 2){
-                    const choice = text.toLowerCase();
-                    const mapping = {
-                        'adventure':'Adventure', 'adventures':'Adventure', 'science fiction':'Science Fiction', 'sci-fi':'Science Fiction', 'scifi':'Science Fiction', 'history':'History', 'realistic fiction':'Realistic Fiction', 'realistic':'Realistic Fiction', 'real':'Realistic Fiction'
-                    };
-                    let matched = null;
-                    Object.keys(mapping).forEach(k=>{ if(choice.includes(k)) matched = mapping[k]; });
-                    if(matched){
-                        state.guessedGenre = matched;
-                        appendMessage(`Great — I'll pick ${matched}. Here are three recommendations:`);
-                        recommendBooks(matched, state.userBooks);
-                        state.step = 99;
-                    } else {
-                        appendMessage("Sorry, please pick one of: Adventure, Science Fiction, History, or Realistic Fiction.");
-                    }
-                } else if(state.step === 99){
-                    // after recommendations, allow quick follow up
-                    appendMessage("If you'd like another recommendation, type 'again' or click the robot button to restart.");
-                    if(text.toLowerCase().includes('again')){
-                        state.step = 1;
-                        state.userBooks = [];
-                        state.guessedGenre = null;
-                        setTimeout(()=> appendMessage('Okay — what are 3 books you like? (Separate with commas)'), 400);
-                    }
-                }
-            }
-
-            function recommendBooks(genre, userBooks){
-                const list = genres[genre] || [];
-                // remove any that match user's listed books
-                const loweredUser = state.userBooks.map(s=>s.toLowerCase());
-                const filtered = list.filter(b => !loweredUser.some(u => b.title.toLowerCase().includes(u) || b.author.toLowerCase().includes(u)));
-                const picks = filtered.slice(0,3);
-                if(picks.length === 0){
-                    appendMessage('I like many books in that genre — try another genre or ask again for different picks.');
-                    return;
-                }
-                picks.forEach(p => appendMessage(`${p.title} — ${p.author}`));
-                appendMessage('Hope you enjoy these!');
-            }
-
-            // allow clicking the header to close
-            document.querySelector('#ai-chat .header').addEventListener('click', function(){ closeChat(); });
-
-        })();
-    </script>
-
-</body> 
+  <script src="script.js"></script>
+</body>
 </html>
