@@ -103,11 +103,7 @@
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
             padding: 0;
-            margin: 0;
-        }
-        .book-card-link {
-            text-decoration: none;
-            display: block;
+            margin: 0 0 20px 0;
         }
         .book-card {
             background-color: #f9f9f9;
@@ -133,11 +129,44 @@
             font-weight: 700;
             margin-bottom: 4px;
             line-height: 1.2;
-            text-decoration: underline;
         }
         .book-author {
             font-size: 12px;
             color: #555;
+            font-style: italic;
+        }
+        .alisha-pick-section {
+            background: linear-gradient(to right, #f9f9f9, #fafafa);
+            border-top: 2px solid #d29be4;
+            border-bottom: 2px solid #d29be4;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 6px;
+        }
+        .alisha-pick-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #7B1FA2;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .alisha-pick-content {
+            text-align: left;
+        }
+        .pick-book-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1A237E;
+            margin: 0 0 8px 0;
+        }
+        .pick-review {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+            margin: 0;
             font-style: italic;
         }
         .footer-section {
@@ -184,36 +213,33 @@
         <section class="genre-container">
             <div class="genre-title">🎒 Adventure 🎒</div>
             <div class="book-grid">
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Wildborn (Spirit Animals)</span>
-                        <span class="book-author">by Brandon Mull</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Explorer</span>
-                        <span class="book-author">by Katherine Rundell</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Hatchet</span>
-                        <span class="book-author">by Gary Paulsen</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Boxcar Children</span>
-                        <span class="book-author">by G. Chandler Warner</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Bletchley Riddle</span>
-                        <span class="book-author">by R. Sepetys & S. Sheinkin</span>
-                    </div>
-                </a>
+                <div class="book-card">
+                    <span class="book-title">Wildborn (Spirit Animals)</span>
+                    <span class="book-author">by Brandon Mull</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">The Explorer</span>
+                    <span class="book-author">by Katherine Rundell</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">Hatchet</span>
+                    <span class="book-author">by Gary Paulsen</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">The Boxcar Children</span>
+                    <span class="book-author">by G. Chandler Warner</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">The Bletchley Riddle</span>
+                    <span class="book-author">by R. Sepetys & S. Sheinkin</span>
+                </div>
+            </div>
+            <div class="alisha-pick-section">
+                <div class="alisha-pick-title">⭐ Alisha's Pick</div>
+                <div class="alisha-pick-content">
+                    <div class="pick-book-title">Hatchet by Gary Paulsen</div>
+                    <p class="pick-review">A gripping survival story that keeps you on the edge of your seat. Paulsen's beautiful prose captures both the struggle and wonder of nature in a way that will make you think about resilience long after you finish the book.</p>
+                </div>
             </div>
         </section>
 
@@ -221,36 +247,33 @@
         <section class="genre-container">
             <div class="genre-title">🚀 Science Fiction 🚀</div>
             <div class="book-grid">
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Wild Robot</span>
-                        <span class="book-author">by Peter Brown</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">A Wrinkle in Time</span>
-                        <span class="book-author">by Madeleine L'Engle</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Last Last-Day-of-Summer</span>
-                        <span class="book-author">by Lamar Giles</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Giver</span>
-                        <span class="book-author">by Lois Lowry</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The First State of Being</span>
-                        <span class="book-author">by Erin Entrada Kelly</span>
-                    </div>
-                </a>
+                <div class="book-card">
+                    <span class="book-title">The Wild Robot</span>
+                    <span class="book-author">by Peter Brown</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">A Wrinkle in Time</span>
+                    <span class="book-author">by Madeleine L'Engle</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">The Last Last-Day-of-Summer</span>
+                    <span class="book-author">by Lamar Giles</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">The Giver</span>
+                    <span class="book-author">by Lois Lowry</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">The First State of Being</span>
+                    <span class="book-author">by Erin Entrada Kelly</span>
+                </div>
+            </div>
+            <div class="alisha-pick-section">
+                <div class="alisha-pick-title">⭐ Alisha's Pick</div>
+                <div class="alisha-pick-content">
+                    <div class="pick-book-title">A Wrinkle in Time by Madeleine L'Engle</div>
+                    <p class="pick-review">A timeless classic that blends adventure with profound philosophical questions. This imaginative journey through dimensions and galaxies explores themes of courage and self-acceptance that resonate with readers of all ages.</p>
+                </div>
             </div>
         </section>
 
@@ -258,36 +281,33 @@
         <section class="genre-container">
             <div class="genre-title">📜 History 📜</div>
             <div class="book-grid">
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Code Name: Verity</span>
-                        <span class="book-author">by Elizabeth Wein</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Wolf by Wolf</span>
-                        <span class="book-author">by Ava E. Reid</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Book Thief</span>
-                        <span class="book-author">by Markus Zusak</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Crispin: The Cross of Lead</span>
-                        <span class="book-author">by Avi</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Chains</span>
-                        <span class="book-author">by Laurie Halse Anderson</span>
-                    </div>
-                </a>
+                <div class="book-card">
+                    <span class="book-title">Code Name: Verity</span>
+                    <span class="book-author">by Elizabeth Wein</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">Wolf by Wolf</span>
+                    <span class="book-author">by Ava E. Reid</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">The Book Thief</span>
+                    <span class="book-author">by Markus Zusak</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">Crispin: The Cross of Lead</span>
+                    <span class="book-author">by Avi</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">Chains</span>
+                    <span class="book-author">by Laurie Halse Anderson</span>
+                </div>
+            </div>
+            <div class="alisha-pick-section">
+                <div class="alisha-pick-title">⭐ Alisha's Pick</div>
+                <div class="alisha-pick-content">
+                    <div class="pick-book-title">Code Name: Verity by Elizabeth Wein</div>
+                    <p class="pick-review">An absolutely stunning historical novel about female pilots in World War II. Told through letters and coded messages, this intricate narrative builds to a powerful conclusion that explores loyalty, sacrifice, and the strength found in friendship.</p>
+                </div>
             </div>
         </section>
 
@@ -295,36 +315,33 @@
         <section class="genre-container">
             <div class="genre-title">🔍 Mystery 🔍</div>
             <div class="book-grid">
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Wollstonecraft Detective Agency</span>
-                        <span class="book-author">by Jordan Stratford</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Truly Devious</span>
-                        <span class="book-author">by Maureen Johnson</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">A Good Girl's Guide to Murder</span>
-                        <span class="book-author">by Holly Jackson</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Mysterious Benedict Society</span>
-                        <span class="book-author">by Trenton Stewart</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">One of Us Is Lying</span>
-                        <span class="book-author">by Karen M. McManus</span>
-                    </div>
-                </a>
+                <div class="book-card">
+                    <span class="book-title">The Wollstonecraft Detective Agency</span>
+                    <span class="book-author">by Jordan Stratford</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">Truly Devious</span>
+                    <span class="book-author">by Maureen Johnson</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">A Good Girl's Guide to Murder</span>
+                    <span class="book-author">by Holly Jackson</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">The Mysterious Benedict Society</span>
+                    <span class="book-author">by Trenton Stewart</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">One of Us Is Lying</span>
+                    <span class="book-author">by Karen M. McManus</span>
+                </div>
+            </div>
+            <div class="alisha-pick-section">
+                <div class="alisha-pick-title">⭐ Alisha's Pick</div>
+                <div class="alisha-pick-content">
+                    <div class="pick-book-title">A Good Girl's Guide to Murder by Holly Jackson</div>
+                    <p class="pick-review">A cleverly constructed mystery where nothing is quite what it seems. With engaging characters and a protagonist who won't give up, this page-turner keeps you guessing until the very end. Perfect for mystery lovers!</p>
+                </div>
             </div>
         </section>
 
@@ -332,36 +349,33 @@
         <section class="genre-container">
             <div class="genre-title">🌟 Realistic Fiction 🌟</div>
             <div class="book-grid">
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Wonder</span>
-                        <span class="book-author">by R.J. Palacio</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Hate U Give</span>
-                        <span class="book-author">by Angie Thomas</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Fault in Our Stars</span>
-                        <span class="book-author">by John Green</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">Refugee</span>
-                        <span class="book-author">by Alan Gratz</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://amazon.com" target="_blank">
-                    <div class="book-card">
-                        <span class="book-title">The Sky is Everywhere</span>
-                        <span class="book-author">by Jandy Nelson</span>
-                    </div>
-                </a>
+                <div class="book-card">
+                    <span class="book-title">Wonder</span>
+                    <span class="book-author">by R.J. Palacio</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">The Hate U Give</span>
+                    <span class="book-author">by Angie Thomas</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">The Fault in Our Stars</span>
+                    <span class="book-author">by John Green</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">Refugee</span>
+                    <span class="book-author">by Alan Gratz</span>
+                </div>
+                <div class="book-card">
+                    <span class="book-title">The Sky is Everywhere</span>
+                    <span class="book-author">by Jandy Nelson</span>
+                </div>
+            </div>
+            <div class="alisha-pick-section">
+                <div class="alisha-pick-title">⭐ Alisha's Pick</div>
+                <div class="alisha-pick-content">
+                    <div class="pick-book-title">Wonder by R.J. Palacio</div>
+                    <p class="pick-review">A heartwarming story about kindness and acceptance that will touch your soul. Through multiple perspectives, Palacio beautifully illustrates how one person's courage can inspire an entire community to be kinder and more understanding.</p>
+                </div>
             </div>
         </section>
 
