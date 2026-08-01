@@ -597,9 +597,11 @@ A young wizard begins an unforgettable adventure.
 
 
 
+
 </div>
 
 </div>
+
 
 
 
@@ -917,29 +919,78 @@ A classic mystery adventure with a group of siblings.
 let favorites =
 document.querySelectorAll(".favorite");
 
+// Use a page-specific localStorage key so confetti only shows once per user per page
+const confettiShownKey = 'confettiShown:' + location.pathname;
+
+function launchConfetti(){
+  const count = 30;
+  const colors = ['#ff0a54','#ff7b00','#ff8a00','#ffd60a','#8e24aa','#1565c0','#00c853'];
+  const confettiContainer = document.createElement('div');
+  confettiContainer.style.position = 'fixed';
+  confettiContainer.style.left = 0;
+  confettiContainer.style.top = 0;
+  confettiContainer.style.width = '100%';
+  confettiContainer.style.height = '100%';
+  confettiContainer.style.pointerEvents = 'none';
+  confettiContainer.style.overflow = 'hidden';
+  confettiContainer.style.zIndex = 9999;
+  document.body.appendChild(confettiContainer);
+
+  for (let i = 0; i < count; i++){
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    const w = Math.floor(Math.random()*10)+7;
+    el.style.width = w + 'px';
+    el.style.height = (w * 0.4) + 'px';
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.position = 'absolute';
+    el.style.left = (Math.random()*100) + '%';
+    el.style.top = '-10%';
+    el.style.opacity = (Math.random()*0.9+0.1).toString();
+    el.style.transform = 'rotate(' + (Math.random()*360) + 'deg)';
+    el.style.transition = 'transform 2.5s linear, top 2.5s linear, left 2.5s linear, opacity 2.5s linear';
+    confettiContainer.appendChild(el);
+
+    // animate a little later so transitions run
+    setTimeout(()=>{
+      el.style.top = (100 + Math.random()*30) + '%';
+      el.style.left = (Math.random()*100) + '%';
+      el.style.transform = 'rotate(' + (Math.random()*720 - 360) + 'deg) translateY(100px)';
+      el.style.opacity = '0';
+    }, 20 + Math.random()*300);
+  }
+
+  // cleanup
+  setTimeout(()=>{
+    try{ confettiContainer.remove(); } catch(e){}
+  }, 3500);
+}
 
 
 favorites.forEach(button => {
-
 
 button.addEventListener(
 "click",
 function(){
 
-
 if(button.innerHTML.includes("🤍")){
-
 
 button.innerHTML="❤️ Favorite";
 
 button.style.background="#ffcdd2";
 
+// trigger confetti only the first time the user favorites something on this page
+try{
+  if(!localStorage.getItem(confettiShownKey)){
+    launchConfetti();
+    localStorage.setItem(confettiShownKey, 'true');
+  }
+} catch(e) { /* ignore storage errors */ }
 
 }
 
 
 else{
-
 
 button.innerHTML="🤍 Favorite";
 
@@ -953,7 +1004,6 @@ button.style.background="#ffebee";
 
 
 });
-
 
 
 </script>
