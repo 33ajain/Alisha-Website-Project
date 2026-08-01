@@ -1,300 +1,965 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>More Genres - Book Recommendations</title>
-    <style>
-        body { 
-            background-color: lightcyan; 
-            border: 8px solid #d29be4; 
-            min-height: 100vh; 
-            margin: 0; 
-            box-sizing: border-box; 
-            padding: 0; 
-            display: flex;
-            flex-direction: column;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            align-items: center; 
-        } 
-        .site-header {
-            width: 100%;
-            background-color: white;
-            border-bottom: 2px solid #d29be4;
-            padding: 10px 20px;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo-container {
-            font-size: 18px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .logo-text {
-            background: linear-gradient(to right, #1A237E, #7B1FA2, #E91E63);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-        }
-        .nav-links a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 600;
-            margin-left: 15px;
-            font-size: 14px;
-        }
-        .main-content {
-            flex: 1;
-            width: 100%;
-            max-width: 900px;
-            display: flex;
-            flex-direction: column;
-            align-items: center; 
-            padding: 25px 15px;
-            box-sizing: border-box;
-        }
-        .hero-title {
-            text-align: center; 
-            font-size: 36px; 
-            font-weight: 900; 
-            margin: 0 0 10px 0; 
-            background: linear-gradient(to right, #1A237E, #7B1FA2, #E91E63); 
-            -webkit-background-clip: text; 
-            background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            color: transparent;
-        }
-        .hero-subtitle {
-            font-family: Verdana, sans-serif; 
-            font-size: 15px; 
-            text-align: center; 
-            margin-bottom: 30px; 
-            color: #444;
-            max-width: 550px;
-            line-height: 1.4;
-        } 
-        .genre-container {
-            width: 100%;
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            box-sizing: border-box;
-            border: 1px solid rgba(210, 155, 228, 0.3);
-            text-align: center;
-        }
-        .genre-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #111;
-            margin-top: 0;
-            margin-bottom: 15px;
-            display: inline-block;
-            border-bottom: 2px solid #d29be4;
-            padding-bottom: 2px;
-        }
-        .book-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            padding: 0;
-            margin: 0;
-        }
-        .book-card-link {
-            text-decoration: none;
-            display: block;
-        }
-        .book-card {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            padding: 15px;
-            border: 1px solid #eee;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 90px;
-            box-sizing: border-box;
-        }
-        .book-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            background-color: #f3f3f3;
-        }
-        .book-title {
-            font-size: 14px;
-            color: #1A237E; 
-            font-weight: 700;
-            margin-bottom: 4px;
-            line-height: 1.2;
-            text-decoration: underline;
-        }
-        .book-author {
-            font-size: 12px;
-            color: #555;
-            font-style: italic;
-        }
-        .footer-section {
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            background: white;
-            width: 100%;
-            border-top: 1px solid #d29be4;
-            padding: 20px; 
-            box-sizing: border-box;
-        }
-        .back-button {
-            display: inline-block;
-            background: linear-gradient(to right, #1A237E, #7B1FA2);
-            color: white !important;
-            text-decoration: none;
-            padding: 10px 30px;
-            font-size: 14px;
-            font-weight: 700;
-            border-radius: 20px;
-            box-shadow: 0 3px 8px rgba(26, 35, 126, 0.2);
-        }
-    </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>More Genres 📚 | Alisha's Reads</title>
+
+
+<style>
+
+*{
+
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:"Segoe UI",Arial,sans-serif;
+
+}
+
+
+body{
+
+background:
+linear-gradient(
+180deg,
+#dffaff,
+#fff0fa
+);
+
+color:#333;
+
+}
+
+
+
+/* HEADER */
+
+
+header{
+
+background:white;
+
+padding:18px 40px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+border-bottom:3px solid #d29be4;
+
+position:sticky;
+
+top:0;
+
+z-index:10;
+
+}
+
+
+.logo{
+
+font-size:28px;
+
+font-weight:900;
+
+background:
+linear-gradient(
+90deg,
+#1565c0,
+#8e24aa,
+#ec407a
+);
+
+-webkit-background-clip:text;
+
+color:transparent;
+
+}
+
+
+
+nav a{
+
+text-decoration:none;
+
+color:#333;
+
+font-weight:bold;
+
+margin-left:20px;
+
+}
+
+
+
+nav a:hover{
+
+color:#9c27b0;
+
+}
+
+
+
+
+/* HERO */
+
+
+.hero{
+
+text-align:center;
+
+padding:70px 20px;
+
+}
+
+
+
+.hero h1{
+
+font-size:48px;
+
+background:
+linear-gradient(
+90deg,
+#1565c0,
+#8e24aa,
+#ec407a
+);
+
+-webkit-background-clip:text;
+
+color:transparent;
+
+}
+
+
+
+.hero p{
+
+font-size:19px;
+
+max-width:650px;
+
+margin:20px auto;
+
+line-height:1.6;
+
+}
+
+
+
+
+/* BUTTON */
+
+
+.btn{
+
+display:inline-block;
+
+margin-top:20px;
+
+padding:14px 30px;
+
+border-radius:30px;
+
+background:
+
+linear-gradient(
+90deg,
+#8e24aa,
+#ec407a
+);
+
+color:white;
+
+font-weight:bold;
+
+text-decoration:none;
+
+transition:.3s;
+
+}
+
+
+
+.btn:hover{
+
+transform:scale(1.08);
+
+}
+
+
+
+
+/* CONTENT */
+
+
+.container{
+
+max-width:1100px;
+
+margin:auto;
+
+padding:30px 20px;
+
+}
+
+
+
+.genre{
+
+background:white;
+
+border-radius:25px;
+
+padding:25px;
+
+margin-bottom:35px;
+
+box-shadow:
+
+0 8px 20px rgba(0,0,0,.1);
+
+}
+
+
+
+.genre-title{
+
+font-size:32px;
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+
+
+
+.books{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:20px;
+
+}
+
+
+
+
+.book-card{
+
+background:#fafafa;
+
+padding:20px;
+
+border-radius:18px;
+
+text-align:center;
+
+border:2px solid #eee;
+
+transition:.3s;
+
+}
+
+
+
+.book-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:
+0 12px 25px rgba(0,0,0,.15);
+
+}
+
+
+
+
+.book-cover{
+
+height:150px;
+
+width:110px;
+
+margin:auto;
+
+border-radius:12px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:45px;
+
+color:white;
+
+
+background:
+
+linear-gradient(
+135deg,
+#8e24aa,
+#ec407a
+);
+
+}
+
+
+
+.book-card h3{
+
+margin-top:15px;
+
+color:#1565c0;
+
+}
+
+
+
+.book-card p{
+
+margin-top:8px;
+
+font-size:14px;
+
+}
+
+
+
+
+.favorite{
+
+margin-top:15px;
+
+border:none;
+
+padding:8px 15px;
+
+border-radius:20px;
+
+cursor:pointer;
+
+background:#ffebee;
+
+}
+
+
+
+
+footer{
+
+background:white;
+
+border-top:3px solid #d29be4;
+
+padding:25px;
+
+text-align:center;
+
+margin-top:40px;
+
+}
+
+
+
+@media(max-width:600px){
+
+header{
+
+flex-direction:column;
+
+}
+
+nav{
+
+margin-top:15px;
+
+}
+
+.hero h1{
+
+font-size:36px;
+
+}
+
+}
+
+
+</style>
+
 </head>
+
+
 <body>
 
-    <header class="site-header">
-        <div class="logo-container">
-            <span>📚</span><span class="logo-text">Alisha's Reads</span>
-        </div>
-        <nav class="nav-links">
-            <a href="Alisha - WebsiteProject.html">Home</a>
-            <a href="#">More Genres</a>
-        </nav>
-    </header>
 
-    <main class="main-content">
-        <h1 class="hero-title">Specialty Genres</h1>
-        <p class="hero-subtitle">Dive deep into legendary folklore, heartwarming stories of childhood friendship, and mysterious puzzle-filled mansions!</p>
+<header>
 
-        <!-- FANTASY CARD SECTION -->
-        <section class="genre-container">
-            <div class="genre-title">🪄 Fantasy 🪄</div>
-            <div class="book-grid">
-                <a class="book-card-link" href="https://www.amazon.com/dp/0141365466" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">The Lightning Thief</span>
-                        <span class="book-author">by Rick Riordan</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://www.amazon.com/dp/0064404994" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">The Lion, the Witch & the Wardrobe</span>
-                        <span class="book-author">by C.S. Lewis</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://www.amazon.com/dp/0062944712" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">Amari and the Night Brothers</span>
-                        <span class="book-author">by B.B. Alston</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://www.amazon.com/dp/059035342X" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">Harry Potter & the Sorcerer's Stone</span>
-                        <span class="book-author">by J.K. Rowling</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://www.amazon.com/dp/0141365466" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">Impossible Creatures</span>
-                        <span class="book-author">by Katherine Rundell</span>
-                    </div>
-                </a>
-            </div>
-        </section>
 
-        <!-- ROMANCE CARD SECTION -->
-        <section class="genre-container">
-            <div class="genre-title">💖 Romance & Friendship 💖</div>
-            <div class="book-grid">
-                <a class="book-card-link" href="https://www.amazon.com/dp/0440414126" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">Flipped</span>
-                        <span class="book-author">by Wendelin Van Draanen</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://www.amazon.com/dp/0142408488" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">The Girl Who Drank the Moon</span>
-                        <span class="book-author">by Kelly Barnhill</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://www.amazon.com/dp/0440419541" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">The Penderwicks</span>
-                        <span class="book-author">by Jeanne Birdsall</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://www.amazon.com/dp/0440414126" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">The Lemonade War</span>
-                        <span class="book-author">by Jacqueline Davies</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://www.amazon.com/dp/1101994881" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">All the Blues in the Sky</span>
-                        <span class="book-author">by Renée Watson</span>
-                    </div>
-                </a>
-            </div>
-        </section>
+<div class="logo">
+📚 Alisha's Reads
+</div>
 
-        <!-- MYSTERY CARD SECTION (LIMITED TO 5) -->
-        <section class="genre-container">
-            <div class="genre-title">🔍 Mystery 🔍</div>
-            <div class="book-grid">
-                <a class="book-card-link" href="https://www.amazon.com/dp/0142408889" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">Encyclopedia Brown, Boy Detective</span>
-                        <span class="book-author">by Donald J. Sobol</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://www.amazon.com/dp/0448479697" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">Nancy Drew: The Secret of the Old Clock</span>
-                        <span class="book-author">by Carolyn Keene</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://www.amazon.com/dp/0448489521" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">The Tower Treasure (The Hardy Boys)</span>
-                        <span class="book-author">by Franklin W. Dixon</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://www.amazon.com/dp/0140386645" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">The Westing Game</span>
-                        <span class="book-author">by Ellen Raskin</span>
-                    </div>
-                </a>
-                <a class="book-card-link" href="https://www.amazon.com/dp/0807508527" target="_blank" rel="noopener">
-                    <div class="book-card">
-                        <span class="book-title">The Boxcar Children</span>
-                        <span class="book-author">by Gertrude Chandler Warner</span>
-                    </div>
-                </a>
-            </div>
-        </section>
 
-    </main>
+<nav>
 
-    <footer class="footer-section">
-        <a class="back-button" href="Alisha - WebsiteProject.html">← Back to Home</a>
-    </footer>
+<a href="index.html">
+Home
+</a>
+
+
+<a href="Alisha - WebsiteProject.html">
+Books
+</a>
+
+
+<a href="about.html">
+Genres
+</a>
+
+
+</nav>
+
+
+</header>
+
+
+
+
+
+<section class="hero">
+
+
+<h1>
+Explore More Worlds! 🌈
+</h1>
+
+
+<p>
+
+Discover magical kingdoms, exciting mysteries,
+and stories about friendship that you will never forget.
+
+</p>
+
+
+<a class="btn" href="Alisha - WebsiteProject.html">
+← Back to Books
+</a>
+
+
+</section>
+
+
+
+
+<section class="container">
+<!-- FANTASY -->
+
+<div class="genre">
+
+
+<div class="genre-title">
+🪄 Fantasy
+</div>
+
+
+
+<div class="books">
+
+
+
+<div class="book-card">
+
+<div class="book-cover">
+⚡
+</div>
+
+<h3>
+The Lightning Thief
+</h3>
+
+<p>
+by Rick Riordan
+</p>
+
+<p>
+A hero discovers a magical world filled with Greek mythology.
+</p>
+
+
+<button class="favorite">
+🤍 Favorite
+</button>
+
+</div>
+
+
+
+
+
+<div class="book-card">
+
+<div class="book-cover">
+🦁
+</div>
+
+<h3>
+The Lion, the Witch & the Wardrobe
+</h3>
+
+<p>
+by C.S. Lewis
+</p>
+
+<p>
+A journey into the magical land of Narnia.
+</p>
+
+
+<button class="favorite">
+🤍 Favorite
+</button>
+
+</div>
+
+
+
+
+
+<div class="book-card">
+
+<div class="book-cover">
+🌙
+</div>
+
+<h3>
+Amari and the Night Brothers
+</h3>
+
+<p>
+by B.B. Alston
+</p>
+
+<p>
+A magical adventure full of secrets and surprises.
+</p>
+
+
+<button class="favorite">
+🤍 Favorite
+</button>
+
+</div>
+
+
+
+
+
+<div class="book-card">
+
+<div class="book-cover">
+🧙
+</div>
+
+<h3>
+Harry Potter
+</h3>
+
+<p>
+by J.K. Rowling
+</p>
+
+<p>
+A young wizard begins an unforgettable adventure.
+</p>
+
+
+<button class="favorite">
+🤍 Favorite
+</button>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- ROMANCE AND FRIENDSHIP -->
+
+
+<div class="genre">
+
+
+<div class="genre-title">
+💖 Romance & Friendship
+</div>
+
+
+
+<div class="books">
+
+
+
+<div class="book-card">
+
+<div class="book-cover">
+💌
+</div>
+
+<h3>
+Flipped
+</h3>
+
+<p>
+by Wendelin Van Draanen
+</p>
+
+<p>
+A sweet story about friendship and seeing people differently.
+</p>
+
+
+<button class="favorite">
+🤍 Favorite
+</button>
+
+</div>
+
+
+
+
+
+<div class="book-card">
+
+<div class="book-cover">
+🌙
+</div>
+
+<h3>
+The Girl Who Drank the Moon
+</h3>
+
+<p>
+by Kelly Barnhill
+</p>
+
+<p>
+A magical story about love, family, and courage.
+</p>
+
+
+<button class="favorite">
+🤍 Favorite
+</button>
+
+</div>
+
+
+
+
+
+<div class="book-card">
+
+<div class="book-cover">
+🏡
+</div>
+
+<h3>
+The Penderwicks
+</h3>
+
+<p>
+by Jeanne Birdsall
+</p>
+
+<p>
+A heartwarming story about family and friendship.
+</p>
+
+
+<button class="favorite">
+🤍 Favorite
+</button>
+
+</div>
+
+
+
+
+
+<div class="book-card">
+
+<div class="book-cover">
+🍋
+</div>
+
+<h3>
+The Lemonade War
+</h3>
+
+<p>
+by Jacqueline Davies
+</p>
+
+<p>
+A fun story about siblings, friendship, and teamwork.
+</p>
+
+
+<button class="favorite">
+🤍 Favorite
+</button>
+
+</div>
+
+
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- MYSTERY -->
+
+
+<div class="genre">
+
+
+<div class="genre-title">
+🔍 Mystery
+</div>
+
+
+
+
+<div class="books">
+
+
+
+<div class="book-card">
+
+<div class="book-cover">
+🕵️
+</div>
+
+<h3>
+Nancy Drew
+</h3>
+
+<p>
+by Carolyn Keene
+</p>
+
+<p>
+Solve mysteries alongside one of the world's best detectives.
+</p>
+
+
+<button class="favorite">
+🤍 Favorite
+</button>
+
+</div>
+
+
+
+
+
+<div class="book-card">
+
+<div class="book-cover">
+🔎
+</div>
+
+<h3>
+Encyclopedia Brown
+</h3>
+
+<p>
+by Donald J. Sobol
+</p>
+
+<p>
+A kid detective solves tricky cases.
+</p>
+
+
+<button class="favorite">
+🤍 Favorite
+</button>
+
+</div>
+
+
+
+
+
+<div class="book-card">
+
+<div class="book-cover">
+🏰
+</div>
+
+<h3>
+The Westing Game
+</h3>
+
+<p>
+by Ellen Raskin
+</p>
+
+<p>
+A mysterious puzzle that challenges young detectives.
+</p>
+
+
+<button class="favorite">
+🤍 Favorite
+</button>
+
+</div>
+
+
+
+
+
+<div class="book-card">
+
+<div class="book-cover">
+🚂
+</div>
+
+<h3>
+The Boxcar Children
+</h3>
+
+<p>
+by Gertrude Chandler Warner
+</p>
+
+<p>
+A classic mystery adventure with a group of siblings.
+</p>
+
+
+<button class="favorite">
+🤍 Favorite
+</button>
+
+</div>
+
+
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+
+<footer>
+
+<h3>
+📚 Keep Exploring!
+</h3>
+
+<p>
+© 2026 Alisha's Reads | Helping kids find books they love 💖
+</p>
+
+</footer>
+
+
+
+
+<script>
+
+
+// FAVORITE BUTTONS
+
+
+let favorites =
+document.querySelectorAll(".favorite");
+
+
+
+favorites.forEach(button => {
+
+
+button.addEventListener(
+"click",
+function(){
+
+
+if(button.innerHTML.includes("🤍")){
+
+
+button.innerHTML="❤️ Favorite";
+
+button.style.background="#ffcdd2";
+
+
+}
+
+
+else{
+
+
+button.innerHTML="🤍 Favorite";
+
+button.style.background="#ffebee";
+
+
+}
+
+
+});
+
+
+});
+
+
+
+</script>
+
+
 
 </body>
+
 </html>
