@@ -38,7 +38,7 @@ const recommendations = {
     ],
     alishaPick: {
       title: "The Silent Patient — Alex Michaelides",
-      review: "A gripping psychological thriller that moves from a quiet, unsettling premise to a heart-stopping twist. Alisha loves how the author uses unreliable perspectives and tight pacing to keep you guessing until the last page."
+      review: "A gripping psychological thriller that moves from a quiet, unsettling premise to a heart-stopping twist. Alisha loves how the author uses unreliable perspectives and tight pacing to[...]"
     }
   },
   "Fantasy": {
@@ -49,7 +49,7 @@ const recommendations = {
     ],
     alishaPick: {
       title: "The Night Circus — Erin Morgenstern",
-      review: "A lush, atmospheric fantasy that reads like a dream. Alisha recommends it for readers who enjoy evocative world-building, whimsical magic, and lyrical prose — it's small in scope but enormous in imagination."
+      review: "A lush, atmospheric fantasy that reads like a dream. Alisha recommends it for readers who enjoy evocative world-building, whimsical magic, and lyrical prose — it's small in scope [...]"
     }
   },
   "Literary": {
@@ -60,7 +60,7 @@ const recommendations = {
     ],
     alishaPick: {
       title: "Normal People — Sally Rooney",
-      review: "A quiet, intimate novel about connection and the messy ways people grow together and apart. Alisha appreciates the nuance in character dynamics and the precise, conversational prose that lingers after you finish."
+      review: "A quiet, intimate novel about connection and the messy ways people grow together and apart. Alisha appreciates the nuance in character dynamics and the precise, conversational prose[...]"
     }
   },
   "Romance": {
@@ -71,13 +71,13 @@ const recommendations = {
     ],
     alishaPick: {
       title: "Pride and Prejudice — Jane Austen",
-      review: "A timeless romance filled with wit, social insight, and unforgettable characters. Alisha recommends it for first-time romance readers and longtime fans alike — its clever dialogue and moral warmth make it endlessly re-readable."
+      review: "A timeless romance filled with wit, social insight, and unforgettable characters. Alisha recommends it for first-time romance readers and longtime fans alike — its clever dialogue[...]"
     }
   }
 };
 
 let index=0;
-const state = {answers: []};
+const state = {answers: [], favorites: new Set()};
 
 const el = {
   quizSection: document.getElementById('quiz-section'),
@@ -163,9 +163,32 @@ function showResult(){
   };
   el.genreDesc.textContent = descs[top] || '';
   el.bookList.innerHTML = '';
-  (recommendations[top].list || []).forEach(b=>{
+
+  // Build book list with clickable favorites; show confetti when first favorite is added
+  (recommendations[top].list || []).forEach((b, idx)=>{
     const li = document.createElement('li');
     li.textContent = b.title;
+    li.tabIndex = 0;
+    li.classList.add('book-item');
+
+    // Toggle favorite on click
+    li.addEventListener('click', () => {
+      const key = `${top}-${idx}-${b.title}`;
+      const wasFav = state.favorites.has(key);
+      if (wasFav) {
+        state.favorites.delete(key);
+        li.classList.remove('fav');
+      } else {
+        state.favorites.add(key);
+        li.classList.add('fav');
+        // If this is the first favorite the user added this session, celebrate
+        if (state.favorites.size === 1) {
+          launchConfetti();
+        }
+      }
+    });
+
+    li.addEventListener('keypress', (e) => { if (e.key === 'Enter') li.click(); });
     el.bookList.appendChild(li);
   });
 
@@ -181,4 +204,79 @@ function showResult(){
   // show result
   el.quizSection.classList.add('hidden'); el.quizSection.setAttribute('aria-hidden','true');
   el.resultSection.classList.remove('hidden'); el.resultSection.setAttribute('aria-hidden','false');
+}
+
+// Confetti implementation: lightweight canvas particle burst
+function launchConfetti() {
+  const duration = 3000;
+  const end = Date.now() + duration;
+
+  // create canvas
+  const canvas = document.createElement('canvas');
+  canvas.className = 'confetti-canvas';
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  const colors = ['#FF595E', '#FFCA3A', '#8AC926', '#1982C4', '#6A4C93'];
+  const particles = [];
+  const particleCount = 80;
+
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height * 0.2,
+      vx: (Math.random() - 0.5) * 8,
+      vy: Math.random() * 6 + 2,
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      tilt: Math.random() * 10 - 10,
+      tiltSpeed: Math.random() * 0.1 + 0.05
+n    });
+  }
+
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p => {
+      ctx.save();
+      ctx.fillStyle = p.color;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.tilt * 0.1);
+      ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size * 0.6);
+      ctx.restore();
+    });
+  }
+
+  function update() {
+    const now = Date.now();
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.15; // gravity
+      p.tilt += p.tiltSpeed;
+
+      // wrap horizontally
+      if (p.x > canvas.width + 20) p.x = -20;
+      if (p.x < -20) p.x = canvas.width + 20;
+    });
+  }
+
+  let raf;
+  function frame() {
+    update();
+    draw();
+    if (Date.now() < end) {
+      raf = requestAnimationFrame(frame);
+    } else {
+      cancelAnimationFrame(raf);
+      canvas.remove();
+    }
+  }
+  frame();
+
+  // remove on resize
+  const onResize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+  window.addEventListener('resize', onResize);
+  setTimeout(()=>{ window.removeEventListener('resize', onResize); }, duration + 500);
 }
